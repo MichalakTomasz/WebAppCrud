@@ -17,8 +17,10 @@ using WebAppCrud.GraphQl.Mutations;
 using WebAppCrud.GraphQl.Queries;
 using WebAppCrud.Validators;
 using DataAccess.Sqlite;
-var builder = WebApplication.CreateBuilder(args);
+using Microsoft.Extensions.Logging.ApplicationInsights;
 
+var builder = WebApplication.CreateBuilder(args);
+var configuration = builder.Configuration;
 // Add services to the container.
 
 builder.Services.AddControllers();
@@ -35,18 +37,41 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
 		c.RegisterGeneric(typeof(GetGenericRequestHandlerAsync<>)).As(typeof(IRequestHandler<,>));
 		c.RegisterGeneric(typeof(GetGenericByIdAsyncQueryHandler<>)).As(typeof(IRequestHandler<,>));
 		c.RegisterGeneric(typeof(LoggingBehavior<,>)).As(typeof(IPipelineBehavior<,>));
-		c.RegisterGeneric(typeof(GenericRepository<>)).As(typeof(IGenericRepository<>)).InstancePerLifetimeScope();
-		c.RegisterType<PersonRepository>().As<IPersonRepository>();
-		c.RegisterType<ProductRepository>().As<IProductRepository>();
-		c.RegisterType<AddressRepositiory>().As<IAddressRepository>();
-		c.RegisterType<UnitOfWork>().As<IUnitOfWork>();
+		
+		if (configuration[CommonConsts.CurrentDb] == CommonConsts.SqlServerDb)
+		{
+            c.RegisterGeneric(typeof(DataAccess.EfCore.GenericRepository<>)).As(typeof(IGenericRepository<>)).InstancePerLifetimeScope();
+            c.RegisterType<DataAccess.EfCore.PersonRepository>().As<IPersonRepository>();
+            c.RegisterType<DataAccess.EfCore.ProductRepository>().As<IProductRepository>();
+            c.RegisterType<DataAccess.EfCore.AddressRepositiory>().As<IAddressRepository>();
+            c.RegisterType<DataAccess.EfCore.UnitOfWork>().As<IUnitOfWork>();
+        }
+		if (configuration.GetSection(CommonConsts.CurrentDb).Get<string>() == CommonConsts.SqliteDb)
+		{
+            c.RegisterGeneric(typeof(DataAccess.Sqlite.GenericRepository<>)).As(typeof(IGenericRepository<>)).InstancePerLifetimeScope();
+            c.RegisterType<DataAccess.Sqlite.PersonRepository>().As<IPersonRepository>();
+            c.RegisterType<DataAccess.Sqlite.ProductRepository>().As<IProductRepository>();
+            c.RegisterType<DataAccess.Sqlite.AddressRepositiory>().As<IAddressRepository>();
+            c.RegisterType<DataAccess.Sqlite.UnitOfWork>().As<IUnitOfWork>();
+        }
 	});
-//builder.Services.AddDbContext<ApplicationDbContext>(o => 
-//o.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerContextConnectionString")));
+if (configuration[CommonConsts.CurrentDb] == CommonConsts.SqlServerDb)
+{
+    builder.Services.AddDbContext<ApplicationDbContext>(o =>
+    o.UseSqlServer(builder.Configuration.GetConnectionString(CommonConsts.SqlServerConnectionString)));
 
-builder.Services.AddDbContext<SqliteDbContext>(o => o.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnectionString")));
+    builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<ApplicationDbContext>();
+}
+if (configuration[CommonConsts.CurrentDb] == CommonConsts.SqliteDb)
+{
+    builder.Services.AddDbContext<SqliteDbContext>(o => 
+	o.UseSqlite(builder.Configuration.GetConnectionString(CommonConsts.SqliteConnectionString)));
 
-var configuration = builder.Configuration;
+    builder.Services.AddIdentity<IdentityUser, IdentityRole>()
+    .AddEntityFrameworkStores<SqliteDbContext>();
+}
+
 builder.Services.AddAuthentication(o =>
 {
 	o.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
@@ -81,8 +106,7 @@ builder.Services.AddAuthorization(o =>
 		p.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
 	});
 });
-builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-	.AddEntityFrameworkStores<ApplicationDbContext>();
+
 
 builder.Services.AddGraphQLServer()
 	.AddQueryType<Query>()
@@ -97,7 +121,14 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Logging.AddDebug();
 builder.Logging.AddConsole();
+builder.Logging.AddApplicationInsights(configureTelemetryConfiguration: c =>
+c.ConnectionString = configuration.GetConnectionString(GetConnectionstring()), configureApplicationInsightsLoggerOptions: o => { });
+builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("Mine-cathegory", LogLevel.Trace);
 
+string GetConnectionstring()
+	=> configuration[CommonConsts.CurrentDb] == CommonConsts.SqlServerDb ?
+	configuration.GetConnectionString(CommonConsts.SqlServerDb) :
+	configuration.GetConnectionString(CommonConsts.SqliteDb);
 
 var app = builder.Build();
 

@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using WebAppCrud.Mediator;
 using WebAppCrud.Models;
-using WebAppCrud.Services;
 
 namespace WebAppCrud.Controllers
 {
@@ -16,20 +15,17 @@ namespace WebAppCrud.Controllers
 		private readonly UserManager<IdentityUser> _userManager;
 		private readonly RoleManager<IdentityRole> _roleManager;
 		private readonly IConfiguration _configuration;
-		private readonly ITokenService _tokenService;
 		private readonly IMediator _mediator;
 
 		public AuthController(
 			UserManager<IdentityUser> userManager, 
 			RoleManager<IdentityRole> roleManager, 
 			IConfiguration configuration,
-			ITokenService tokenService,
 			IMediator mediator)
         {
 			_userManager = userManager;
 			_roleManager = roleManager;
 			_configuration = configuration;
-			_tokenService = tokenService;
 			_mediator = mediator;
 		}
 

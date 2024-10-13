@@ -16,6 +16,7 @@ using WebAppCrud.GraphQl.Exceptions;
 using WebAppCrud.GraphQl.Mutations;
 using WebAppCrud.GraphQl.Queries;
 using WebAppCrud.Validators;
+using DataAccess.Sqlite;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -40,8 +41,10 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
 		c.RegisterType<AddressRepositiory>().As<IAddressRepository>();
 		c.RegisterType<UnitOfWork>().As<IUnitOfWork>();
 	});
-builder.Services.AddDbContext<ApplicationDbContext>(o => 
-o.UseSqlServer(builder.Configuration.GetConnectionString("ApplicationContextConnectionString")));
+//builder.Services.AddDbContext<ApplicationDbContext>(o => 
+//o.UseSqlServer(builder.Configuration.GetConnectionString("SqlServerContextConnectionString")));
+
+builder.Services.AddDbContext<SqliteDbContext>(o => o.UseSqlite(builder.Configuration.GetConnectionString("SqliteConnectionString")));
 
 var configuration = builder.Configuration;
 builder.Services.AddAuthentication(o =>

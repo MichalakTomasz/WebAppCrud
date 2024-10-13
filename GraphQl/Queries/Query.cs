@@ -1,4 +1,5 @@
 ﻿using Domain.Models;
+using HotChocolate.Authorization;
 using MediatR;
 using WebAppCrud.Mediator;
 using WebAppCrud.Models;
@@ -9,6 +10,7 @@ namespace WebAppCrud.GraphQl.Queries
 	public class Query
 	{
 		[GraphQLName("products")]
+		[Authorize(policy: CommonConsts.GuestPolicy)]
 		public async Task<IEnumerable<Product>> GetProductsAsync([Service]IMediator mediator)
 		{
 			LoggerNotification notification = new()
@@ -23,6 +25,7 @@ namespace WebAppCrud.GraphQl.Queries
 			
 
 		[GraphQLName("product")]
+		[Authorize(policy: CommonConsts.GuestPolicy)]
 		public async Task<Product> GetProductAsync(int id, [Service]IMediator mediator)
 		{
 			LoggerNotification notification = new()

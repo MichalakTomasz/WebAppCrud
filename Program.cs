@@ -111,8 +111,8 @@ builder.Services.AddAuthorization(o =>
 builder.Services.AddGraphQLServer()
 	.AddQueryType<Query>()
 	.AddMutationType<Mutation>()
-	.AddAuthorization()
-	.UseField<DomainExceptionMiddleware>();
+	.AddAuthorization();
+	//.UseField<DomainExceptionMiddleware>();
 
 
 builder.Services.AddMediatR(o => o.RegisterServicesFromAssembly(typeof(Program).Assembly));
@@ -121,14 +121,15 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Logging.AddDebug();
 builder.Logging.AddConsole();
-builder.Logging.AddApplicationInsights(configureTelemetryConfiguration: c =>
-c.ConnectionString = configuration.GetConnectionString(GetConnectionstring()), configureApplicationInsightsLoggerOptions: o => { });
-builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("Mine-cathegory", LogLevel.Trace);
+//var connectionString = GetConnectionstring();
+//builder.Logging.AddApplicationInsights(configureTelemetryConfiguration: c =>
+//c.ConnectionString = configuration.GetConnectionString(connectionString), configureApplicationInsightsLoggerOptions: o => { });
+//builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("Mine-cathegory", LogLevel.Trace);
 
 string GetConnectionstring()
 	=> configuration[CommonConsts.CurrentDb] == CommonConsts.SqlServerDb ?
-	configuration.GetConnectionString(CommonConsts.SqlServerDb) :
-	configuration.GetConnectionString(CommonConsts.SqliteDb);
+	configuration.GetConnectionString(CommonConsts.SqlServerConnectionString) :
+	configuration.GetConnectionString(CommonConsts.SqliteConnectionString);
 
 var app = builder.Build();
 

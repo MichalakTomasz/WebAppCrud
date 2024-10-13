@@ -2,13 +2,14 @@
 using MediatR;
 using WebAppCrud.Mediator;
 using WebAppCrud.GraphQl.Exceptions;
+using HotChocolate.Authorization;
 
 namespace WebAppCrud.GraphQl.Mutations
 {
 	public class Mutation
 	{
 		[GraphQLName("addProduct")]
-		//[Authorize(policy: CommonConsts.Librarian)]
+		[Authorize(policy: CommonConsts.AdminPolicy)]
 		public async Task<Product> AddProductAsync(InputProduct product, [Service] IMediator mediator)
 		{
 			var validationResult = await mediator.Send(new ProductValidationRequest { ProductDto = product });
@@ -23,10 +24,12 @@ namespace WebAppCrud.GraphQl.Mutations
 		}
 		
 		[GraphQLName("updateProduct")]
+		[Authorize(policy: CommonConsts.AdminPolicy)]
 		public async Task<Product> UpdateProductAsync(Product product, [Service] IMediator mediator)
 			=> await mediator.Send(new UpdateProductRequest { Product = product });
 
 		[GraphQLName("deleteProduct")]
+		[Authorize(policy: CommonConsts.AdminPolicy)]
 		public async Task<bool> DeleteProductAsync(int id, [Service] IMediator mediator)
 			=> await mediator.Send(new DeleteProductRequest { Id = id });
 	}

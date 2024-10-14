@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="DataAccess.EfCore\DataAccess.EfCore.csproj" />
+    <ProjectReference Include="DataAccess.SqlServer\DataAccess.SqlServer.csproj" />
     <ProjectReference Include="Domain\Domain.csproj" />
   </ItemGroup>
 

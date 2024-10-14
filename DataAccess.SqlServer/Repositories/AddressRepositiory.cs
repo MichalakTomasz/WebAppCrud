@@ -1,10 +1,10 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
 
-namespace DataAccess.EfCore
+namespace DataAccess.SqlServer.Repositories
 {
 	public class AddressRepositiory : GenericRepository<Address>, IAddressRepository
 	{
-        public AddressRepositiory(ApplicationDbContext context) : base(context) { }
+        public AddressRepositiory(SqlServerDbContext context) : base(context) { }
     }
 }

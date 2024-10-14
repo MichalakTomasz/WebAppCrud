@@ -1,7 +1,6 @@
-﻿using DataAccess.Sqlite;
-using Domain.Interfaces;
+﻿using Domain.Interfaces;
 
-namespace DataAccess.Sqlite
+namespace DataAccess.Sqlite.Repositories
 {
 	public class UnitOfWork : IUnitOfWork, IDisposable
 	{

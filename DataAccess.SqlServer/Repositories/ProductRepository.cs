@@ -1,12 +1,12 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
 
-namespace DataAccess.EfCore
+namespace DataAccess.SqlServer.Repositories
 {
 	public class ProductRepository : GenericRepository<Product>, IProductRepository
 
 	{
-        public ProductRepository(ApplicationDbContext context) : base(context)
+        public ProductRepository(SqlServerDbContext context) : base(context)
         {
             
         }

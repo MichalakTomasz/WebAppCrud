@@ -1,6 +1,6 @@
 using Autofac;
 using Autofac.Extensions.DependencyInjection;
-using DataAccess.EfCore;
+using DataAccess.SqlServer;
 using Domain.Interfaces;
 using Domain.Models;
 using FluentValidation;
@@ -40,28 +40,28 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
 		
 		if (configuration[CommonConsts.CurrentDb] == CommonConsts.SqlServerDb)
 		{
-            c.RegisterGeneric(typeof(DataAccess.EfCore.GenericRepository<>)).As(typeof(IGenericRepository<>)).InstancePerLifetimeScope();
-            c.RegisterType<DataAccess.EfCore.PersonRepository>().As<IPersonRepository>();
-            c.RegisterType<DataAccess.EfCore.ProductRepository>().As<IProductRepository>();
-            c.RegisterType<DataAccess.EfCore.AddressRepositiory>().As<IAddressRepository>();
-            c.RegisterType<DataAccess.EfCore.UnitOfWork>().As<IUnitOfWork>();
+            c.RegisterGeneric(typeof(DataAccess.SqlServer.Repositories.GenericRepository<>)).As(typeof(IGenericRepository<>)).InstancePerLifetimeScope();
+            c.RegisterType<DataAccess.SqlServer.Repositories.PersonRepository>().As<IPersonRepository>();
+            c.RegisterType<DataAccess.SqlServer.Repositories.ProductRepository>().As<IProductRepository>();
+            c.RegisterType<DataAccess.SqlServer.Repositories.AddressRepositiory>().As<IAddressRepository>();
+            c.RegisterType<DataAccess.SqlServer.Repositories.UnitOfWork>().As<IUnitOfWork>();
         }
 		if (configuration.GetSection(CommonConsts.CurrentDb).Get<string>() == CommonConsts.SqliteDb)
 		{
-            c.RegisterGeneric(typeof(DataAccess.Sqlite.GenericRepository<>)).As(typeof(IGenericRepository<>)).InstancePerLifetimeScope();
-            c.RegisterType<DataAccess.Sqlite.PersonRepository>().As<IPersonRepository>();
-            c.RegisterType<DataAccess.Sqlite.ProductRepository>().As<IProductRepository>();
-            c.RegisterType<DataAccess.Sqlite.AddressRepositiory>().As<IAddressRepository>();
-            c.RegisterType<DataAccess.Sqlite.UnitOfWork>().As<IUnitOfWork>();
+            c.RegisterGeneric(typeof(DataAccess.Sqlite.Repositories.GenericRepository<>)).As(typeof(IGenericRepository<>)).InstancePerLifetimeScope();
+            c.RegisterType<DataAccess.Sqlite.Repositories.PersonRepository>().As<IPersonRepository>();
+            c.RegisterType<DataAccess.Sqlite.Repositories.ProductRepository>().As<IProductRepository>();
+            c.RegisterType<DataAccess.Sqlite.Repositories.AddressRepositiory>().As<IAddressRepository>();
+            c.RegisterType<DataAccess.Sqlite.Repositories.UnitOfWork>().As<IUnitOfWork>();
         }
 	});
 if (configuration[CommonConsts.CurrentDb] == CommonConsts.SqlServerDb)
 {
-    builder.Services.AddDbContext<ApplicationDbContext>(o =>
+    builder.Services.AddDbContext<SqlServerDbContext>(o =>
     o.UseSqlServer(builder.Configuration.GetConnectionString(CommonConsts.SqlServerConnectionString)));
 
     builder.Services.AddIdentity<IdentityUser, IdentityRole>()
-    .AddEntityFrameworkStores<ApplicationDbContext>();
+    .AddEntityFrameworkStores<SqlServerDbContext>();
 }
 if (configuration[CommonConsts.CurrentDb] == CommonConsts.SqliteDb)
 {

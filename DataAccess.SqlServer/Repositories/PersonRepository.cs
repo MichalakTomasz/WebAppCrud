@@ -1,10 +1,10 @@
 ﻿using Domain.Interfaces;
 using Domain.Models;
 
-namespace DataAccess.EfCore
+namespace DataAccess.SqlServer.Repositories
 {
 	public class PersonRepository : GenericRepository<Person>, IPersonRepository
 	{
-        public PersonRepository(ApplicationDbContext context) : base(context) { }
+        public PersonRepository(SqlServerDbContext context) : base(context) { }
     }
 }

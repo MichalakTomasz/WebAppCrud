@@ -1,13 +1,13 @@
 ﻿using Domain.Interfaces;
 
-namespace DataAccess.EfCore
+namespace DataAccess.SqlServer.Repositories
 {
 	public class UnitOfWork : IUnitOfWork, IDisposable
 	{
-		private readonly ApplicationDbContext _context;
+		private readonly SqlServerDbContext _context;
 
 		public UnitOfWork(
-			ApplicationDbContext context,
+			SqlServerDbContext context,
 			IPersonRepository personRepository,
 			IProductRepository productRepository)
         {

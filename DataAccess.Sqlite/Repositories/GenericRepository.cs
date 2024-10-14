@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace DataAccess.Sqlite
+namespace DataAccess.Sqlite.Repositories
 {
 	public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity: class, IIdable
     {

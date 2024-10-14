@@ -2,13 +2,13 @@
 using Microsoft.EntityFrameworkCore;
 using System.Linq.Expressions;
 
-namespace DataAccess.EfCore
+namespace DataAccess.SqlServer.Repositories
 {
 	public class GenericRepository<TEntity> : IGenericRepository<TEntity> where TEntity: class, IIdable
     {
-        private readonly ApplicationDbContext _ctx;
+        private readonly SqlServerDbContext _ctx;
 
-        public GenericRepository(ApplicationDbContext context)
+        public GenericRepository(SqlServerDbContext context)
             => _ctx = context;
 
         public IQueryable<TEntity> GetQueryable()

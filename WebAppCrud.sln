@@ -10,9 +10,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebAppCrud", "WebAppCrud.cs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Domain", "Domain\Domain.csproj", "{4BF8299D-DAFF-45E2-BD2E-D32A3CBD91C6}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.EfCore", "DataAccess.EfCore\DataAccess.EfCore.csproj", "{57231DEB-C2AC-4D6D-8902-AC1F0A3D3EFE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.SqlServer", "DataAccess.SqlServer\DataAccess.SqlServer.csproj", "{57231DEB-C2AC-4D6D-8902-AC1F0A3D3EFE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataAccess.Sqlite", "DataAccess.Sqlite\DataAccess.Sqlite.csproj", "{16532BCA-43AD-4BE4-BB69-B7A99CAD0611}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataAccess.Sqlite", "DataAccess.Sqlite\DataAccess.Sqlite.csproj", "{16532BCA-43AD-4BE4-BB69-B7A99CAD0611}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebAppCrud.Mediator;
-using WebAppCrud.Models;
 
 namespace WebAppCrud.Controllers
 {

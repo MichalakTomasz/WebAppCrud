@@ -12,7 +12,7 @@ namespace WebAppCrud.GraphQl.Mutations
 		[Authorize(policy: CommonConsts.AdminPolicy)]
 		public async Task<Product> AddProductAsync(InputProduct product, [Service] IMediator mediator)
 		{
-			var validationResult = await mediator.Send(new ProductValidationRequest { ProductDto = product });
+			var validationResult = await mediator.Send(new ProductValidationRequest { InputProduct = product });
 			if (!validationResult.IsValid)
 			{
 				var errorMessage = string.Join(',', validationResult.Errors.Select(e => e.ErrorMessage));

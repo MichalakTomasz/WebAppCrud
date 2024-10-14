@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace WebAppCrud.Models
+namespace Domain.Models
 {
 	public class AuthModel
 	{

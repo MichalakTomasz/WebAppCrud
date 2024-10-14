@@ -15,6 +15,6 @@ namespace WebAppCrud.Mediator
 		}
 
         public  Task<ValidationResult> Handle(ProductValidationRequest request, CancellationToken cancellationToken)
-			=> Task.FromResult(_validator.Validate(request.ProductDto));
+			=> Task.FromResult(_validator.Validate(request.InputProduct));
 	}
 }

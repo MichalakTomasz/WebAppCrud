@@ -3,7 +3,6 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WebAppCrud.Mediator;
-using WebAppCrud.Models;
 using WebAppCrud.Notifications;
 
 namespace WebAppCrud.Controllers
@@ -56,7 +55,7 @@ namespace WebAppCrud.Controllers
 		[Authorize(policy: CommonConsts.AdminPolicy)]
 		public async Task<ActionResult<Product>> UpdateProduct(InputProduct product)
 		{
-			var validationResult = await _mediator.Send(new ProductValidationRequest { ProductDto = product });
+			var validationResult = await _mediator.Send(new ProductValidationRequest { InputProduct = product });
 			if (!validationResult.IsValid)
 				return BadRequest(validationResult.Errors);
 
@@ -88,7 +87,7 @@ namespace WebAppCrud.Controllers
 		[Authorize(policy: CommonConsts.AdminPolicy)]
 		public async Task<ActionResult<Product>> AddProduct(InputProduct product)
 		{
-			var validationResult = await _mediator.Send(new ProductValidationRequest { ProductDto = product });
+			var validationResult = await _mediator.Send(new ProductValidationRequest { InputProduct = product });
 			if (!validationResult.IsValid)
 				return BadRequest(validationResult.Errors);
 

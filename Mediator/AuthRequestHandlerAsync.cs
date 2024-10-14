@@ -1,7 +1,6 @@
 ﻿using Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
-using WebAppCrud.Models;
 
 namespace WebAppCrud.Mediator
 {

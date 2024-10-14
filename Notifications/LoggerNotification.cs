@@ -1,5 +1,5 @@
-﻿using MediatR;
-using WebAppCrud.Models;
+﻿using Domain.Models;
+using MediatR;
 
 namespace WebAppCrud.Notifications
 {

@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Domain.Models;
+using MediatR;
 using Microsoft.IdentityModel.Tokens;
 
 namespace WebAppCrud.Notifications
@@ -15,13 +16,13 @@ namespace WebAppCrud.Notifications
 		{
 			switch (notification.NotificationType)
 			{
-				case Models.NotificationType.Information:
+				case NotificationType.Information:
 					_logger.LogInformation(notification.Message);
 					break;
-				case Models.NotificationType.Warning:
+				case NotificationType.Warning:
 					_logger.LogWarning(notification.Message);
 					break;
-				case Models.NotificationType.Error:
+				case NotificationType.Error:
 					_logger.LogError(notification.Message);
 					break;
 				default:

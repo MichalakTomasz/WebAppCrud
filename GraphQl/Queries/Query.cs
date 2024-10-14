@@ -3,7 +3,6 @@ using HotChocolate.Authorization;
 using MediatR;
 using System.Diagnostics;
 using WebAppCrud.Mediator;
-using WebAppCrud.Models;
 using WebAppCrud.Notifications;
 
 namespace WebAppCrud.GraphQl.Queries

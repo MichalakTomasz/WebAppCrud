@@ -2,7 +2,7 @@
 
 namespace WebAppCrud.Models
 {
-	public class AuthViewModel
+	public class AuthModel
 	{
         public Credentials Credentials { get; set; }
 		[JsonConverter(typeof(JsonStringEnumConverter))]

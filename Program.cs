@@ -114,7 +114,6 @@ builder.Services.AddGraphQLServer()
 	.AddAuthorization();
 	//.UseField<DomainExceptionMiddleware>();
 
-
 builder.Services.AddMediatR(o => o.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
@@ -145,7 +144,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapGraphQL();
-//app.MapIdentityApi<IdentityUser>();
 
 app.MapControllers();
 

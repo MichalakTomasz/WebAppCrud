@@ -15,7 +15,14 @@ namespace WebAppCrud.GraphQl.Exceptions
 			{
 				await _next(context);
 			}
-			catch (DomainException exception) { }
+			catch (FluentValidationException exception) 
+			{
+				throw new Exception(exception.Message, exception.InnerException);
+			}
+			catch(DomainException ex)
+			{
+				ErrorBuilder.New().SetMessage(ex.Message);
+			}
 		}
 	}
 }

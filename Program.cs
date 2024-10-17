@@ -12,12 +12,10 @@ using Microsoft.IdentityModel.Tokens;
 using System.Text;
 using WebAppCrud.Behaviors;
 using WebAppCrud.Mediator;
-using WebAppCrud.GraphQl.Exceptions;
 using WebAppCrud.GraphQl.Mutations;
 using WebAppCrud.GraphQl.Queries;
 using WebAppCrud.Validators;
 using DataAccess.Sqlite;
-using Microsoft.Extensions.Logging.ApplicationInsights;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -178,3 +176,6 @@ using (var scope = app.Services.CreateScope())
 //});
 
 app.Run();
+
+
+public partial class Program { }

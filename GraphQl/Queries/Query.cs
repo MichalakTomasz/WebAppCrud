@@ -1,13 +1,12 @@
 ﻿using Domain.Models;
 using HotChocolate.Authorization;
 using MediatR;
-using System.Diagnostics;
 using WebAppCrud.Mediator;
 using WebAppCrud.Notifications;
 
 namespace WebAppCrud.GraphQl.Queries
 {
-	public class Query
+    public class Query
 	{
 		[GraphQLName("products")]
 		[Authorize(policy: CommonConsts.GuestPolicy)]
@@ -45,7 +44,7 @@ namespace WebAppCrud.GraphQl.Queries
 		public async Task<bool> RegisterAsync(NewAppUser newUser, [Service]IMediator mediator)
 			=> await mediator.Send(new RegisterRequest { NewUser = newUser });
 
-		[GraphQLName("DeleteUser")]
+		[GraphQLName("deleteUser")]
 		[Authorize(policy: CommonConsts.AdminPolicy)]
 		public async Task<bool> DeleteUserAsync(Guid userId, [Service]IMediator mediatior)
 			=> await mediatior.Send(new DeleteUserRequest { UserId = userId });

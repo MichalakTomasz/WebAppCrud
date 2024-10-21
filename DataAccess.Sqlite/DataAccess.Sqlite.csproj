@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" PrivateAssets="all"/>
   </ItemGroup>
 
 </Project>

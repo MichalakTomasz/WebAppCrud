@@ -1,8 +1,9 @@
 ﻿using Domain.Models;
 using MediatR;
 using Microsoft.IdentityModel.Tokens;
+using WebAppCrud.Notifications;
 
-namespace WebAppCrud.Notifications
+namespace DataAccess.Notifications
 {
 	public class LoggerNotificationHandler : INotificationHandler<LoggerNotification>
 	{

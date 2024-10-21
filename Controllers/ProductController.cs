@@ -8,7 +8,7 @@ using WebAppCrud.Notifications;
 namespace WebAppCrud.Controllers
 {
 
-	[ApiController]
+    [ApiController]
 	[Route("[Controller]")]
 	public class ProductController : ControllerBase
 	{

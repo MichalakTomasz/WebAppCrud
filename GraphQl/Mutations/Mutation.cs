@@ -1,8 +1,9 @@
 ﻿using Domain.Models;
 using MediatR;
-using WebAppCrud.Mediator;
-using WebAppCrud.GraphQl.Exceptions;
 using HotChocolate.Authorization;
+using WebAppCrud.Mediator;
+using FluentValidation;
+using WebAppCrud.Exceptions;
 
 namespace WebAppCrud.GraphQl.Mutations
 {
@@ -15,18 +16,35 @@ namespace WebAppCrud.GraphQl.Mutations
 			var validationResult = await mediator.Send(new ProductValidationRequest { InputProduct = product });
 			if (!validationResult.IsValid)
 			{
-				var errorMessage = string.Join(',', validationResult.Errors.Select(e => e.ErrorMessage));
-				throw new FluentValidationException(errorMessage);
+				throw new ValidationException(validationResult.Errors);
 			}
-				
-
+			
 			return await mediator.Send(new AddProductRequest { Product = product });
 		}
-		
+
 		[GraphQLName("updateProduct")]
 		[Authorize(policy: CommonConsts.AdminPolicy)]
-		public async Task<Product> UpdateProductAsync(Product product, [Service] IMediator mediator)
-			=> await mediator.Send(new UpdateProductRequest { Product = product });
+		public async Task<Product> UpdateProductAsync(InputProduct inputProduct, [Service] IMediator mediator)
+		{
+            var validationResult = await mediator.Send(new ProductValidationRequest { InputProduct = inputProduct });
+			if (!validationResult.IsValid)
+				throw new ValidationException(validationResult.Errors);
+
+            var findProductResult = await mediator.Send(new GetGenericByIdRequest<Product> { Id = inputProduct.Id });
+            if (findProductResult == default)
+                throw new NotFoundException("Nie odnaleziono takiego produktu w bazie danych.");
+
+            findProductResult.UrlPicture = inputProduct.UrlPicture;
+            findProductResult.Price = inputProduct.Price;
+            findProductResult.Name = inputProduct.Name;
+            findProductResult.Description = inputProduct.Description;
+            findProductResult.Code = inputProduct.Code;
+            var updateResut = await mediator.Send(new UpdateProductRequest { Product = findProductResult });
+			if (updateResut == default)
+				throw new InternalServerError("Nie usało się zaktualizować produktu.");
+
+			return updateResut;
+		}
 
 		[GraphQLName("deleteProduct")]
 		[Authorize(policy: CommonConsts.AdminPolicy)]

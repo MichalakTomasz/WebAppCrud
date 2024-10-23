@@ -23,7 +23,7 @@ namespace WebAppCrud.Controllers
 		[Authorize(policy: CommonConsts.GuestPolicy)]
 		public async Task<ActionResult<IEnumerable<Product>>> GetAllProducts()
 		{
-			var products = await _mediator.Send(new GetAllProductsRequest());
+			var products = await _mediator.Send(new GetGenericRequest<Product>());
 
 			await _mediator.Publish(new LoggerNotification
 			{

@@ -32,7 +32,8 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
 		c.RegisterType<PersonValidator>().As<IValidator<Person>>();
 		c.RegisterType<AddresValidator>().As<IValidator<Address>>();
 		c.RegisterType<ProductDtoValidator>().As<IValidator<InputProduct>>();
-		c.RegisterGeneric(typeof(GetGenericRequestHandlerAsync<>)).As(typeof(IRequestHandler<,>));
+        c.RegisterGeneric(typeof(GetGenericRequestHandlerAsync<>)).As(typeof(IRequestHandler<,>));
+        c.RegisterGeneric(typeof(GetGenericQueryableRequestHandlerAsync<>)).As(typeof(IRequestHandler<,>));
 		c.RegisterGeneric(typeof(GetGenericByIdAsyncQueryHandler<>)).As(typeof(IRequestHandler<,>));
 		c.RegisterGeneric(typeof(LoggingBehavior<,>)).As(typeof(IPipelineBehavior<,>));
 		
@@ -109,7 +110,11 @@ builder.Services.AddAuthorization(o =>
 builder.Services.AddGraphQLServer()
 	.AddQueryType<Query>()
 	.AddMutationType<Mutation>()
-	.AddAuthorization();
+	.AddAuthorization()
+	.AddFiltering()
+	.AddSorting()
+	.AddQueryableCursorPagingProvider();
+
 	//.UseField<DomainExceptionMiddleware>();
 
 builder.Services.AddMediatR(o => o.RegisterServicesFromAssembly(typeof(Program).Assembly));

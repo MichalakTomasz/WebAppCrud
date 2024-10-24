@@ -7,8 +7,6 @@
 
     <IsPackable>false</IsPackable>
     <IsTestProject>true</IsTestProject>
-    <GenerateTargetFrameworkAttribute>false</GenerateTargetFrameworkAttribute>
-    <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
   </PropertyGroup>
 
   <ItemGroup>
@@ -27,7 +25,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\WebAppCrud.csproj" />
+    <ProjectReference Include="..\DataAccess.Sqlite\DataAccess.Sqlite.csproj" />
+    <ProjectReference Include="..\DataAccess.SqlServer\DataAccess.SqlServer.csproj" />
+    <ProjectReference Include="..\Domain\Domain.csproj" />
+    <ProjectReference Include="..\WebAppCrud\WebAppCrud.csproj" />
   </ItemGroup>
 
   <ItemGroup>

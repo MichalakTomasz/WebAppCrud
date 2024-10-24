@@ -94,7 +94,6 @@ builder.Services.AddAuthorization(o =>
 {
 	o.AddPolicy(CommonConsts.GuestPolicy, p =>
 	{
-		//p.RequireAssertion(_ => false);
 		p.RequireRole(CommonConsts.Guest);
 		p.AddAuthenticationSchemes(JwtBearerDefaults.AuthenticationScheme);
 	});
@@ -114,8 +113,6 @@ builder.Services.AddGraphQLServer()
 	.AddFiltering()
 	.AddSorting()
 	.AddQueryableCursorPagingProvider();
-
-	//.UseField<DomainExceptionMiddleware>();
 
 builder.Services.AddMediatR(o => o.RegisterServicesFromAssembly(typeof(Program).Assembly));
 
@@ -166,21 +163,6 @@ using (var scope = app.Services.CreateScope())
 	}
 }
 
-//app.Use(async (context, next) =>
-//{
-//	if (!context.User.Identity.IsAuthenticated)
-//	{
-//		var claims = new List<Claim>
-//			{
-//				new Claim(ClaimTypes.Role, "Guest")
-//			};
-//		var identity = new ClaimsIdentity(claims, "Guest");
-//		context.User.AddIdentity(identity);
-//	}
-//	await next.Invoke();
-//});
-
 app.Run();
-
 
 public partial class Program { }

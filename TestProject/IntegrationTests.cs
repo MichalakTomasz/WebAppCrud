@@ -8,6 +8,7 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using FluentAssertions;
 using System.Net.Http.Headers;
+using System;
 
 namespace TestProject
 {
@@ -22,11 +23,10 @@ namespace TestProject
 
 		[Fact]
 		public async Task AuthGuestTestPassed()
-        {
-            var jsonResponse = await GuestAuthAsync();
-
-            // Assert
-            Assert.True(jsonResponse.IsAuthorized);
+        { 
+                var jsonResponse = await GuestAuthAsync();
+                // Assert
+                Assert.True(jsonResponse.IsAuthorized);            
         }
 
         [Fact]

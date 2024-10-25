@@ -18,9 +18,9 @@ namespace TestProject
     {
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
-            var projectPath = Directory.GetParent(Assembly.GetExecutingAssembly().Location).Parent.Parent.Parent.FullName; //@"D:\\Repos\\WebAppCrud";
-                        
-            builder.UseSolutionRelativeContentRoot(projectPath);
+            var projectPath = Path.Combine(Directory.GetParent(Assembly.GetExecutingAssembly().Location).Parent.Parent.Parent.Parent.FullName, "WebAppCrud");
+
+            builder.UseContentRoot(projectPath);
             builder.ConfigureServices(async services =>
             {
                 var projectDir = Directory.GetCurrentDirectory();

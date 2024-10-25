@@ -50,5 +50,18 @@ namespace WebAppCrud.GraphQl.Mutations
 		[Authorize(policy: CommonConsts.AdminPolicy)]
 		public async Task<bool> DeleteProductAsync(int id, [Service] IMediator mediator)
 			=> await mediator.Send(new DeleteProductRequest { Id = id });
-	}
+
+        [GraphQLName("auth")]
+        public async Task<AuthResult> AuthAsync(AuthModel authModel, [Service] IMediator mediator)
+            => await mediator.Send(new AuthRequest { AuthModel = authModel });
+
+        [GraphQLName("register")]
+        public async Task<bool> RegisterAsync(NewAppUser newUser, [Service] IMediator mediator)
+            => await mediator.Send(new RegisterRequest { NewUser = newUser });
+
+        [GraphQLName("deleteUser")]
+        [Authorize(policy: CommonConsts.AdminPolicy)]
+        public async Task<bool> DeleteUserAsync(Guid userId, [Service] IMediator mediatior)
+            => await mediatior.Send(new DeleteUserRequest { UserId = userId });
+    }
 }

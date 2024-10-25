@@ -3,14 +3,6 @@
   "WorkspaceRootPath": "D:\\Repos\\WebAppCrud\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|d:\\repos\\webappcrud\\testproject\\integrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|solutionrelative:testproject\\integrationtests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|d:\\repos\\webappcrud\\mediator\\registerrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|solutionrelative:mediator\\registerrequesthandler.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9BFE6B79-7DC9-401D-A45E-3A022B602607}|TestProject\\TestProject.csproj|d:\\repos\\webappcrud\\testproject\\customwebapplicationfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9BFE6B79-7DC9-401D-A45E-3A022B602607}|TestProject\\TestProject.csproj|solutionrelative:testproject\\customwebapplicationfactory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -19,24 +11,8 @@
       "RelativeMoniker": "D:0:0:{57231DEB-C2AC-4D6D-8902-AC1F0A3D3EFE}|DataAccess.SqlServer\\DataAccess.SqlServer.csproj|solutionrelative:dataaccess.sqlserver\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|d:\\repos\\webappcrud\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9BFE6B79-7DC9-401D-A45E-3A022B602607}|TestProject\\TestProject.csproj|d:\\repos\\webappcrud\\testproject\\testproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{9BFE6B79-7DC9-401D-A45E-3A022B602607}|TestProject\\TestProject.csproj|solutionrelative:testproject\\testproject.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|d:\\repos\\webappcrud\\webappcrud.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
-      "RelativeMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|solutionrelative:webappcrud.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|d:\\repos\\webappcrud\\controllers\\personcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|solutionrelative:controllers\\personcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|d:\\repos\\webappcrud\\mediator\\getgenericrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|solutionrelative:mediator\\getgenericrequest.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{16532BCA-43AD-4BE4-BB69-B7A99CAD0611}|DataAccess.Sqlite\\DataAccess.Sqlite.csproj|d:\\repos\\webappcrud\\dataaccess.sqlite\\repositories\\unitofwork.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -49,14 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{16532BCA-43AD-4BE4-BB69-B7A99CAD0611}|DataAccess.Sqlite\\DataAccess.Sqlite.csproj|d:\\repos\\webappcrud\\dataaccess.sqlite\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{16532BCA-43AD-4BE4-BB69-B7A99CAD0611}|DataAccess.Sqlite\\DataAccess.Sqlite.csproj|solutionrelative:dataaccess.sqlite\\repositories\\genericrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|d:\\repos\\webappcrud\\graphql\\mutations\\mutation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|solutionrelative:graphql\\mutations\\mutation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|d:\\repos\\webappcrud\\automapper\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{95A905B4-C875-4744-B2DA-C91DB3E3A6F7}|WebAppCrud.csproj|solutionrelative:automapper\\automapperprofile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{4BF8299D-DAFF-45E2-BD2E-D32A3CBD91C6}|Domain\\Domain.csproj|d:\\repos\\webappcrud\\domain\\models\\roles.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -74,7 +42,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 0,
               "Title": "CustomWebApplicationFactory.cs",
               "DocumentMoniker": "D:\\Repos\\WebAppCrud\\TestProject\\CustomWebApplicationFactory.cs",
               "RelativeDocumentMoniker": "TestProject\\CustomWebApplicationFactory.cs",
@@ -87,7 +55,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "GenericRepository.cs",
               "DocumentMoniker": "D:\\Repos\\WebAppCrud\\DataAccess.SqlServer\\Repositories\\GenericRepository.cs",
               "RelativeDocumentMoniker": "DataAccess.SqlServer\\Repositories\\GenericRepository.cs",
@@ -95,38 +63,23 @@
               "RelativeToolTip": "DataAccess.SqlServer\\Repositories\\GenericRepository.cs",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-21T05:07:33.716Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-21T05:07:33.716Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "Program.cs",
-              "DocumentMoniker": "D:\\Repos\\WebAppCrud\\Program.cs",
-              "RelativeDocumentMoniker": "Program.cs",
-              "ToolTip": "D:\\Repos\\WebAppCrud\\Program.cs",
-              "RelativeToolTip": "Program.cs",
-              "ViewState": "AgIAAH4AAAAAAAAAAAAAAHMAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T05:15:23.093Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "TestProject",
+              "DocumentIndex": 2,
+              "Title": "TestProject.csproj",
               "DocumentMoniker": "D:\\Repos\\WebAppCrud\\TestProject\\TestProject.csproj",
               "RelativeDocumentMoniker": "TestProject\\TestProject.csproj",
               "ToolTip": "D:\\Repos\\WebAppCrud\\TestProject\\TestProject.csproj",
               "RelativeToolTip": "TestProject\\TestProject.csproj",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABcAAAAoAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-10-23T11:58:22.937Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-23T11:58:22.937Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 3,
               "Title": "UnitOfWork.cs",
               "DocumentMoniker": "D:\\Repos\\WebAppCrud\\DataAccess.Sqlite\\Repositories\\UnitOfWork.cs",
               "RelativeDocumentMoniker": "DataAccess.Sqlite\\Repositories\\UnitOfWork.cs",
@@ -138,7 +91,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 5,
               "Title": "GenericRepository.cs",
               "DocumentMoniker": "D:\\Repos\\WebAppCrud\\DataAccess.Sqlite\\Repositories\\GenericRepository.cs",
               "RelativeDocumentMoniker": "DataAccess.Sqlite\\Repositories\\GenericRepository.cs",
@@ -150,20 +103,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "WebAppCrud.csproj",
-              "DocumentMoniker": "D:\\Repos\\WebAppCrud\\WebAppCrud.csproj",
-              "RelativeDocumentMoniker": "WebAppCrud.csproj",
-              "ToolTip": "D:\\Repos\\WebAppCrud\\WebAppCrud.csproj",
-              "RelativeToolTip": "WebAppCrud.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAADIAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-10-23T04:03:18.769Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 4,
               "Title": "SqlServerDbContext.cs",
               "DocumentMoniker": "D:\\Repos\\WebAppCrud\\DataAccess.SqlServer\\SqlServerDbContext.cs",
               "RelativeDocumentMoniker": "DataAccess.SqlServer\\SqlServerDbContext.cs",
@@ -180,83 +120,12 @@
           "SelectedChildIndex": 1,
           "Children": [
             {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "RegisterRequestHandler.cs",
-              "DocumentMoniker": "D:\\Repos\\WebAppCrud\\Mediator\\RegisterRequestHandler.cs",
-              "RelativeDocumentMoniker": "Mediator\\RegisterRequestHandler.cs",
-              "ToolTip": "D:\\Repos\\WebAppCrud\\Mediator\\RegisterRequestHandler.cs",
-              "RelativeToolTip": "Mediator\\RegisterRequestHandler.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB8AAAAMAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T18:13:33.134Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "IntegrationTests.cs",
-              "DocumentMoniker": "D:\\Repos\\WebAppCrud\\TestProject\\IntegrationTests.cs",
-              "RelativeDocumentMoniker": "TestProject\\IntegrationTests.cs",
-              "ToolTip": "D:\\Repos\\WebAppCrud\\TestProject\\IntegrationTests.cs",
-              "RelativeToolTip": "TestProject\\IntegrationTests.cs",
-              "ViewState": "AgIAAFIAAAAAAAAAAAAlwDkAAAAhAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T03:58:17.05Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "GetGenericRequest.cs",
-              "DocumentMoniker": "D:\\Repos\\WebAppCrud\\Mediator\\GetGenericRequest.cs",
-              "RelativeDocumentMoniker": "Mediator\\GetGenericRequest.cs",
-              "ToolTip": "D:\\Repos\\WebAppCrud\\Mediator\\GetGenericRequest.cs",
-              "RelativeToolTip": "Mediator\\GetGenericRequest.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T09:56:06.026Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "PersonController.cs",
-              "DocumentMoniker": "D:\\Repos\\WebAppCrud\\Controllers\\PersonController.cs",
-              "RelativeDocumentMoniker": "Controllers\\PersonController.cs",
-              "ToolTip": "D:\\Repos\\WebAppCrud\\Controllers\\PersonController.cs",
-              "RelativeToolTip": "Controllers\\PersonController.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-23T10:49:49.203Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 12,
-              "Title": "Mutation.cs",
-              "DocumentMoniker": "D:\\Repos\\WebAppCrud\\GraphQl\\Mutations\\Mutation.cs",
-              "RelativeDocumentMoniker": "GraphQl\\Mutations\\Mutation.cs",
-              "ToolTip": "D:\\Repos\\WebAppCrud\\GraphQl\\Mutations\\Mutation.cs",
-              "RelativeToolTip": "GraphQl\\Mutations\\Mutation.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAACAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T05:39:08.397Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 13,
-              "Title": "AutoMapperProfile.cs",
-              "DocumentMoniker": "D:\\Repos\\WebAppCrud\\AutoMapper\\AutoMapperProfile.cs",
-              "RelativeDocumentMoniker": "AutoMapper\\AutoMapperProfile.cs",
-              "ToolTip": "D:\\Repos\\WebAppCrud\\AutoMapper\\AutoMapperProfile.cs",
-              "RelativeToolTip": "AutoMapper\\AutoMapperProfile.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-20T15:52:11.508Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 6,
               "Title": "Roles.cs",
               "DocumentMoniker": "D:\\Repos\\WebAppCrud\\Domain\\Models\\Roles.cs",
               "RelativeDocumentMoniker": "Domain\\Models\\Roles.cs",

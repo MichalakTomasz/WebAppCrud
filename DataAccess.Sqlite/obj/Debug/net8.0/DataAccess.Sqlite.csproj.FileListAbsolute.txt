@@ -6,6 +6,8 @@ D:\Repos\WebAppCrud\DataAccess.Sqlite\bin\Debug\net8.0\Domain.dll
 D:\Repos\WebAppCrud\DataAccess.Sqlite\bin\Debug\net8.0\Domain.pdb
 D:\Repos\WebAppCrud\DataAccess.Sqlite\obj\Debug\net8.0\DataAccess.Sqlite.csproj.AssemblyReference.cache
 D:\Repos\WebAppCrud\DataAccess.Sqlite\obj\Debug\net8.0\DataAccess.Sqlite.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repos\WebAppCrud\DataAccess.Sqlite\obj\Debug\net8.0\DataAccess.Sqlite.AssemblyInfoInputs.cache
+D:\Repos\WebAppCrud\DataAccess.Sqlite\obj\Debug\net8.0\DataAccess.Sqlite.AssemblyInfo.cs
 D:\Repos\WebAppCrud\DataAccess.Sqlite\obj\Debug\net8.0\DataAccess.Sqlite.csproj.CoreCompileInputs.cache
 D:\Repos\WebAppCrud\DataAccess.Sqlite\obj\Debug\net8.0\DataAccess.Sqlite.sourcelink.json
 D:\Repos\WebAppCrud\DataAccess.Sqlite\obj\Debug\net8.0\DataAcce.07C45A29.Up2Date
@@ -14,5 +16,3 @@ D:\Repos\WebAppCrud\DataAccess.Sqlite\obj\Debug\net8.0\refint\DataAccess.Sqlite.
 D:\Repos\WebAppCrud\DataAccess.Sqlite\obj\Debug\net8.0\DataAccess.Sqlite.pdb
 D:\Repos\WebAppCrud\DataAccess.Sqlite\obj\Debug\net8.0\DataAccess.Sqlite.genruntimeconfig.cache
 D:\Repos\WebAppCrud\DataAccess.Sqlite\obj\Debug\net8.0\ref\DataAccess.Sqlite.dll
-D:\Repos\WebAppCrud\DataAccess.Sqlite\obj\Debug\net8.0\DataAccess.Sqlite.AssemblyInfoInputs.cache
-D:\Repos\WebAppCrud\DataAccess.Sqlite\obj\Debug\net8.0\DataAccess.Sqlite.AssemblyInfo.cs

@@ -370,3 +370,4 @@ Migrations/
 
 **/bin/
 **/obj/
+.vs

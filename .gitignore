@@ -367,3 +367,6 @@ Migrations/
 *.db-shm
 *.db-wal
 /WebppCrudSqlite.db
+
+bin/
+obj/

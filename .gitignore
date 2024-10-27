@@ -371,3 +371,4 @@ Migrations/
 **/bin/
 **/obj/
 .vs
+.obj/Debug/net8.0/

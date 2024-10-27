@@ -368,5 +368,5 @@ Migrations/
 *.db-wal
 /WebppCrudSqlite.db
 
-bin/
-obj/
+**/bin/
+**/obj/

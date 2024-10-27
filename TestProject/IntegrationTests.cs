@@ -37,7 +37,6 @@ namespace TestProject
             var token = result.authResult.Token;
                         
             var client = _factory.CreateClient();
-            _factory.ResetDatabase();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             // Act
@@ -140,7 +139,6 @@ namespace TestProject
 
             // Act            
             var client = _factory.CreateClient();
-            _factory.ResetDatabase();
             var response = await client.PostAsync("/auth", stringContent);
             var responseBody = await response.Content.ReadAsStringAsync();
             var jsonResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AuthResult>(responseBody);
@@ -153,7 +151,6 @@ namespace TestProject
             var jsonNewUser = JsonSerializer.Serialize(user);
             var stringNewUserContent = new StringContent(jsonNewUser, Encoding.UTF8, new MediaTypeHeaderValue(MediaTypeNames.Application.Json));
             var client = _factory.CreateClient();
-            _factory.ResetDatabase();
             var retgisterResponse = await client.PostAsync("/auth/register", stringNewUserContent);
             var registerResponseBody = await retgisterResponse.Content.ReadAsStringAsync();
             var registerJsonResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<bool>(registerResponseBody);

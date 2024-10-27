@@ -13,6 +13,8 @@ using System.Reflection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.TestHost;
+using System.Net.Http;
 
 namespace TestProject
 {
@@ -85,7 +87,7 @@ namespace TestProject
             });
         }
 
-        public void ResetDatabase()
+        protected override void ConfigureClient(HttpClient client)
         {
             using var scope = Services.CreateScope();
 

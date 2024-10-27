@@ -8,36 +8,36 @@ using System.Text.Json;
 using System.Threading.Tasks;
 using FluentAssertions;
 using System.Net.Http.Headers;
-using System;
 
 namespace TestProject
 {
     public class IntegrationTests : IClassFixture<CustomWebApplicationFactory<Program>>
 	{
-        
         private readonly CustomWebApplicationFactory<Program> _factory;
-		public IntegrationTests(CustomWebApplicationFactory<Program> factory)
-		{
-			_factory = factory;
-		}
 
-		[Fact]
-		public async Task AuthGuestTestPassed()
-        { 
-                var jsonResponse = await GuestAuthAsync();
-                // Assert
-                Assert.True(jsonResponse.IsAuthorized);            
+        public IntegrationTests(CustomWebApplicationFactory<Program> factory)
+		{
+            _factory = factory;
+        }
+
+        [Fact]
+        public async Task AuthGuestTestPassed()
+        {
+            var result = await GuestAuthAsync();
+            // Assert
+            Assert.True(result.authResult.IsAuthorized);
         }
 
         [Fact]
         public async Task GetProductTestPassed()
         {
             // Arrange
-            var jsonResponse = await GuestAuthAsync();
+            var result = await GuestAuthAsync();
 
-            var token = jsonResponse.Token;
-
+            var token = result.authResult.Token;
+                        
             var client = _factory.CreateClient();
+            _factory.ResetDatabase();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
             // Act
@@ -46,7 +46,7 @@ namespace TestProject
             var getResponseJson = JsonSerializer.Deserialize<IEnumerable<Product>>(getStringContent);
             
             // Assert
-            Assert.True(getResponseJson.Count() == 0);
+            Assert.True(!getResponseJson.Any());
         }
 
         [Fact]
@@ -59,10 +59,10 @@ namespace TestProject
                 Password = "1234Abcd!"
             };
 
-            bool responseResult = await RegisterAsync(newUser);
+            var result = await RegisterAsync(newUser);
 
             // Assert
-            Assert.True(responseResult);
+            Assert.True(result.registerResult);
         }
 
         [Fact]
@@ -75,7 +75,7 @@ namespace TestProject
                 Password = "1234Abcd!"
             };
 
-            await RegisterAsync(newUser);
+            var client = (await RegisterAsync(newUser)).client;
 
             Credentials credentials = new ()
             {
@@ -104,7 +104,6 @@ namespace TestProject
             var productString = new StringContent(jsonProduct, Encoding.UTF8, new MediaTypeHeaderValue(MediaTypeNames.Application.Json));
 
             // Act
-            var client = _factory.CreateClient();
             var response = await client.PostAsync("/auth", authString);
             var responseBody = await response.Content.ReadAsStringAsync();
             var postAuthResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AuthResult>(responseBody);
@@ -126,7 +125,7 @@ namespace TestProject
                 .Including(s => s.Description));
         }
 
-        private async Task<AuthResult?> GuestAuthAsync()
+        private async Task<(HttpClient client,AuthResult? authResult)> GuestAuthAsync()
         {
 
             // Arrange
@@ -139,26 +138,27 @@ namespace TestProject
             var jsonContent = JsonSerializer.Serialize(auth);
             var stringContent = new StringContent(jsonContent, Encoding.UTF8, new MediaTypeHeaderValue(MediaTypeNames.Application.Json));
 
-            // Act
+            // Act            
             var client = _factory.CreateClient();
+            _factory.ResetDatabase();
             var response = await client.PostAsync("/auth", stringContent);
             var responseBody = await response.Content.ReadAsStringAsync();
             var jsonResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<AuthResult>(responseBody);
 
-            return jsonResponse;
+            return (client, jsonResponse);
         }
 
-        private async Task<bool> RegisterAsync(NewAppUser user)
+        private async Task<(HttpClient client, bool registerResult)> RegisterAsync(NewAppUser user)
         {
             var jsonNewUser = JsonSerializer.Serialize(user);
             var stringNewUserContent = new StringContent(jsonNewUser, Encoding.UTF8, new MediaTypeHeaderValue(MediaTypeNames.Application.Json));
-
             var client = _factory.CreateClient();
+            _factory.ResetDatabase();
             var retgisterResponse = await client.PostAsync("/auth/register", stringNewUserContent);
             var registerResponseBody = await retgisterResponse.Content.ReadAsStringAsync();
             var registerJsonResponse = Newtonsoft.Json.JsonConvert.DeserializeObject<bool>(registerResponseBody);
 
-            return registerJsonResponse;
+            return (client, registerJsonResponse);
         }
     }
 }

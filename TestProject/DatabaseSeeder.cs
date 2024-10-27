@@ -8,7 +8,7 @@ namespace TestProject
 {
     public static class DatabaseSeeder
     {
-        public static async Task SeedAsync(IServiceProvider serviceProvider, string projectPath)
+        public static async Task SeedAsync(IServiceProvider serviceProvider)
         {
             var roleManager = serviceProvider.GetRequiredService<RoleManager<IdentityRole>>();
 

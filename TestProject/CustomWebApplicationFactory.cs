@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
-using Microsoft.AspNetCore.TestHost;
 using System;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq;
@@ -11,11 +10,15 @@ using DataAccess.SqlServer;
 using DataAccess.Sqlite;
 using Microsoft.EntityFrameworkCore;
 using System.Reflection;
+using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.AspNetCore.Identity;
 
 namespace TestProject
 {
     public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
     {
+        private string currentDb;
         protected override void ConfigureWebHost(IWebHostBuilder builder)
         {
             var projectPath = Path.Combine(Directory.GetParent(Assembly.GetExecutingAssembly().Location).Parent.Parent.Parent.Parent.FullName, "WebAppCrud");
@@ -28,6 +31,8 @@ namespace TestProject
                 var configuration = new ConfigurationBuilder()
                 .AddJsonFile(configPath)
                 .Build();
+
+                currentDb = configuration[CommonConsts.CurrentDb];
 
                 if (configuration[CommonConsts.CurrentDb] == CommonConsts.SqlServerDb)
                 {
@@ -53,27 +58,25 @@ namespace TestProject
                         options.UseInMemoryDatabase("InMemoryDbForTesting");
                     });
                 }
-               
+
                 var serviceProvider = services.BuildServiceProvider();
-                
+
                 using var scope = serviceProvider.CreateScope();
 
                 if (configuration[CommonConsts.CurrentDb] == CommonConsts.SqlServerDb)
                 {
                     var db = scope.ServiceProvider.GetRequiredService<SqlServerDbContext>();
-                    db.Database.EnsureDeleted();
                     db.Database.EnsureCreated();
                 }
                 else
                 {
                     var db = scope.ServiceProvider.GetRequiredService<SqliteDbContext>();
-                    db.Database.EnsureDeleted();
                     db.Database.EnsureCreated();
                 }
-                    
+
                 try
                 {
-                    await DatabaseSeeder.SeedAsync(scope.ServiceProvider, projectPath);
+                    await DatabaseSeeder.SeedAsync(scope.ServiceProvider);
                 }
                 catch (Exception ex)
                 {
@@ -81,5 +84,25 @@ namespace TestProject
                 }
             });
         }
+
+        public void ResetDatabase()
+        {
+            using var scope = Services.CreateScope();
+
+            IdentityDbContext<IdentityUser> db;
+            if (currentDb == CommonConsts.SqlServerDb)
+            {
+                db = scope.ServiceProvider.GetRequiredService<SqlServerDbContext>();
+            }
+            else
+            {
+                db = scope.ServiceProvider.GetRequiredService<SqliteDbContext>();
+            }
+
+            db.Database.EnsureDeleted();
+            db.Database.EnsureCreated();
+            DatabaseSeeder.SeedAsync(Services);
+        }
     }
+
 }

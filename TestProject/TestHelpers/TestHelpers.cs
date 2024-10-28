@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Razor.Runtime.TagHelpers;
+﻿using Domain.Models;
+using Microsoft.AspNetCore.Razor.Runtime.TagHelpers;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Mime;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -19,7 +21,7 @@ namespace TestProject.TestHelpers
         public static StringContent ToGraphQlContent<T>(this T data)
             => new StringContent(JsonConvert.SerializeObject(new { query = data }), Encoding.UTF8, new MediaTypeHeaderValue(MediaTypeNames.Application.Json));
 
-        public static async Task<T> ConvertGraphQlResponseTo<T>(this HttpResponseMessage? response)
-            => response is not null ? JsonConvert.DeserializeObject<T>(JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync()).data.auth.ToString()) : default;
+        public static async Task<dynamic> ConvertGraphQlResponse(this HttpResponseMessage? response)
+            => JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
     }
 }

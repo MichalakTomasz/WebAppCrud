@@ -9,7 +9,7 @@ using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using TestProject.TestHelpers;
 
-namespace TestProject
+namespace TestProject.IngegrationTests
 {
     [CollectionDefinition("Sequential", DisableParallelization = true)]
     public class SequentialCollection : ICollectionFixture<SequentialTestFixture>
@@ -35,7 +35,7 @@ namespace TestProject
         public async Task AuthGuestTestPassed()
         {
             var authResponse = await GuestAuthAsync();
-            
+
             Assert.True(authResponse.authResult.IsAuthorized);
         }
 
@@ -172,7 +172,7 @@ namespace TestProject
             var client = _factory.CreateClient();
             var registerResponse = await client.PostAsync(graphqlEndpoint, userContent);
             var registerResult = Convert.ToBoolean(JsonConvert.DeserializeObject<dynamic>(await registerResponse.Content.ReadAsStringAsync())?.data.register);
-            
+
             return (client, registerResult);
         }
     }

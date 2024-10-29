@@ -10,15 +10,15 @@ using FluentAssertions;
 using System.Net.Http.Headers;
 using TestProject.TestHelpers;
 
-namespace TestProject
+namespace TestProject.IngegrationTests
 {
     [Collection("Sequential")]
     public class IntegrationApiTests : IClassFixture<CustomWebApplicationFactory<Program>>
-	{
+    {
         private readonly CustomWebApplicationFactory<Program> _factory;
 
         public IntegrationApiTests(CustomWebApplicationFactory<Program> factory)
-		{
+        {
             _factory = factory;
         }
 
@@ -37,7 +37,7 @@ namespace TestProject
             var result = await GuestAuthAsync();
 
             var token = result.authResult.Token;
-                        
+
             var client = _factory.CreateClient();
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
 
@@ -76,13 +76,13 @@ namespace TestProject
 
             var client = (await RegisterAsync(newUser)).client;
 
-            Credentials credentials = new ()
+            Credentials credentials = new()
             {
                 Email = "user@o2.pl",
                 Password = "1234Abcd!"
             };
 
-            AuthModel auth = new ()
+            AuthModel auth = new()
             {
                 Credentials = credentials,
                 AuthType = AuthType.LogIn
@@ -102,7 +102,7 @@ namespace TestProject
             var token = (await authResponse.ConvertTo<AuthResult>()).Token;
 
             client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
-            
+
             var productsResponse = await client.PostAsync("/product", newProduct.ToContent());
             var responseProduct = await productsResponse.ConvertTo<Product>();
             // Assert
@@ -114,12 +114,12 @@ namespace TestProject
                 .Including(s => s.Description));
         }
 
-        private async Task<(HttpClient client,AuthResult? authResult)> GuestAuthAsync()
+        private async Task<(HttpClient client, AuthResult? authResult)> GuestAuthAsync()
         {
 
             // Arrange
-            Credentials credentials = new ();
-            AuthModel auth = new ()
+            Credentials credentials = new();
+            AuthModel auth = new()
             {
                 Credentials = credentials,
                 AuthType = AuthType.Guest

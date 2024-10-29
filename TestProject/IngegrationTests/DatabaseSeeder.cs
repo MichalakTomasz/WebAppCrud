@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Threading.Tasks;
 
-namespace TestProject
+namespace TestProject.IngegrationTests
 {
     public static class DatabaseSeeder
     {

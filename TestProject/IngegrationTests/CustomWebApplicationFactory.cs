@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using System.Net.Http;
 
-namespace TestProject
+namespace TestProject.IngegrationTests
 {
     public class CustomWebApplicationFactory<TStartup> : WebApplicationFactory<TStartup> where TStartup : class
     {
@@ -28,7 +28,7 @@ namespace TestProject
             builder.ConfigureServices(async services =>
             {
                 var projectDir = Directory.GetCurrentDirectory();
-                var configPath = System.IO.Path.Combine(projectDir, projectPath, "appsettings.json");
+                var configPath = Path.Combine(projectDir, projectPath, "appsettings.json");
                 var configuration = new ConfigurationBuilder()
                 .AddJsonFile(configPath)
                 .Build();

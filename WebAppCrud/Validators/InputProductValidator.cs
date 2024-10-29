@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace WebAppCrud.Validators
 {
-	public class ProductDtoValidator : AbstractValidator<InputProduct>
+	public class InputProductValidator : AbstractValidator<InputProduct>
 	{
-        public ProductDtoValidator()
+        public InputProductValidator()
         {
             RuleFor(p => p.Code).NotEmpty().MaximumLength(10);
             RuleFor(p => p.Name).NotEmpty().MaximumLength(100);

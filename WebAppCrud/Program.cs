@@ -31,7 +31,7 @@ builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
 	{
 		c.RegisterType<PersonValidator>().As<IValidator<Person>>();
 		c.RegisterType<AddresValidator>().As<IValidator<Address>>();
-		c.RegisterType<ProductDtoValidator>().As<IValidator<InputProduct>>();
+		c.RegisterType<InputProductValidator>().As<IValidator<InputProduct>>();
         c.RegisterGeneric(typeof(GetGenericRequestHandlerAsync<>)).As(typeof(IRequestHandler<,>));
         c.RegisterGeneric(typeof(GetGenericQueryableRequestHandlerAsync<>)).As(typeof(IRequestHandler<,>));
 		c.RegisterGeneric(typeof(GetGenericByIdAsyncQueryHandler<>)).As(typeof(IRequestHandler<,>));

@@ -1,10 +1,9 @@
-﻿using Domain.Models;
-using Microsoft.AspNetCore.Razor.Runtime.TagHelpers;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Mime;
-using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,7 +20,14 @@ namespace TestProject.TestHelpers
         public static StringContent ToGraphQlContent<T>(this T data)
             => new StringContent(JsonConvert.SerializeObject(new { query = data }), Encoding.UTF8, new MediaTypeHeaderValue(MediaTypeNames.Application.Json));
 
-        public static async Task<dynamic> ConvertGraphQlResponse(this HttpResponseMessage? response)
-            => JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
+        public static async Task<T> ConvertGraphQlResponseTo<T>(this HttpResponseMessage? response)
+        {
+            var dynamic = JsonConvert.DeserializeObject<dynamic>(await response.Content.ReadAsStringAsync());
+            var result = (dynamic?.data as JObject)?.Properties().FirstOrDefault()?.Value;
+            if (result == null)
+                return default;
+
+            return JsonConvert.DeserializeObject<T>(result.ToString());
+        }
     }
 }

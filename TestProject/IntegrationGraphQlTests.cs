@@ -1,7 +1,5 @@
 ﻿using Domain.Models;
-using Newtonsoft.Json;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Net.Http;
 using System.Net.Http.Headers;
@@ -61,9 +59,9 @@ namespace TestProject
     }
 }";
             var response = await client.PostAsync(graphqlEndpoint, query.ToGraphQlContent());
-            var products = JsonConvert.DeserializeObject<IEnumerable<Product>>((await response.ConvertGraphQlResponse()).data.products.ToString());
+            var products = await response.ConvertGraphQlResponseTo<IEnumerable<Product>>();
             // Assert
-            Assert.True(products.Count == 0);
+            Assert.True(!products.Any());
         }
 
         private async Task<(HttpClient client, AuthResult authResult)> GuestAuthAsync()
@@ -79,7 +77,7 @@ namespace TestProject
         }
     }";
             var response = await client.PostAsync(graphqlEndpoint, mutation.ToGraphQlContent());
-            var authResp = JsonConvert.DeserializeObject<AuthResult>((await response.ConvertGraphQlResponse()).data.auth.ToString());
+            var authResp = await response.ConvertGraphQlResponseTo<AuthResult>();
 
             return (client, authResp);
         }

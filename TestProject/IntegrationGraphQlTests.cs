@@ -1,4 +1,7 @@
 ﻿using Domain.Models;
+using FluentAssertions;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
@@ -64,6 +67,16 @@ namespace TestProject
             Assert.True(!products.Any());
         }
 
+        [Fact]
+        public async Task RegisterUserTestPassed()
+        {
+            // Act
+            var result = await RegisterAsync();
+
+            // Assert
+            Assert.True(result.registerResult);
+        }
+
         private async Task<(HttpClient client, AuthResult authResult)> GuestAuthAsync()
         {
             var client = _factory.CreateClient();
@@ -80,6 +93,87 @@ namespace TestProject
             var authResp = await response.ConvertGraphQlResponseTo<AuthResult>();
 
             return (client, authResp);
+        }
+
+        [Fact]
+        public async Task InsertProductTestPassed()
+        {
+            // Arrange
+            var client = (await RegisterAsync()).client;
+
+            var authMutation = @"mutation Auth {
+    auth(
+        authModel: {
+            credentials: { email: ""user@o2.pl"", password: ""1234Abcd!"" }
+            authType: LOG_IN
+        }
+    ) {
+        userId
+        token
+        roles
+        isAuthorized
+    }
+}";
+
+            var addProductMutation = @"mutation AddProduct {
+    addProduct(
+        product: {
+            id: 0
+            code: ""tv""
+            name: ""Telewizor Xiaomi""
+            description: ""tv Xiaomi""
+            urlPicture: ""https://sklep.tv.pl""
+            price: 1400
+        }
+    ) {
+        id
+        code
+        name
+        description
+        urlPicture
+        price
+    }
+}";
+
+            Product newProduct = new()
+            {
+                Id = 0,
+                Code = "tv",
+                Name = "Telewizor Xiaomi",
+                Description = "tv Xiaomi",
+                UrlPicture = "https://sklep.tv.pl",
+                Price = 1400
+            };
+
+            // Act
+            var authResponse = await client.PostAsync(graphqlEndpoint, authMutation.ToGraphQlContent());
+            var token = (await authResponse.ConvertGraphQlResponseTo<AuthResult>()).Token;
+
+            client.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", token);
+
+            var productsResponse = await client.PostAsync(graphqlEndpoint, addProductMutation.ToGraphQlContent());
+            var responseProduct = await productsResponse.ConvertGraphQlResponseTo<Product>();
+
+            // Assert
+            newProduct.Should().BeEquivalentTo(responseProduct,
+                o => o.Including(s => s.Name)
+                .Including(s => s.Code)
+                .Including(s => s.UrlPicture)
+                .Including(s => s.Price)
+                .Including(s => s.Description));
+        }
+
+        private async Task<(HttpClient client, bool registerResult)> RegisterAsync()
+        {
+            var content = @"mutation Register {
+    register(newUser: { email: ""user@o2.pl"", password: ""1234Abcd!"" })
+}";
+            var userContent = content.ToGraphQlContent();
+            var client = _factory.CreateClient();
+            var registerResponse = await client.PostAsync(graphqlEndpoint, userContent);
+            var registerResult = Convert.ToBoolean(JsonConvert.DeserializeObject<dynamic>(await registerResponse.Content.ReadAsStringAsync())?.data.register);
+            
+            return (client, registerResult);
         }
     }
 }

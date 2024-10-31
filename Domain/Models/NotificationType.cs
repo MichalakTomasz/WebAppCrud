@@ -10,6 +10,10 @@
 		Validate,
 		Information,
 		Warning,
-		Error
+		Error,
+		Register,
+		RegistrationError,
+		Auth,
+		AuthError
 	}
 }

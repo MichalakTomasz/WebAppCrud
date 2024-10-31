@@ -16,6 +16,8 @@ using WebAppCrud.GraphQl.Mutations;
 using WebAppCrud.GraphQl.Queries;
 using WebAppCrud.Validators;
 using DataAccess.Sqlite;
+using Microsoft.AspNetCore.HttpOverrides;
+using WebAppCrud.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -120,15 +122,11 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 builder.Logging.AddDebug();
 builder.Logging.AddConsole();
-//var connectionString = GetConnectionstring();
 //builder.Logging.AddApplicationInsights(configureTelemetryConfiguration: c =>
-//c.ConnectionString = configuration.GetConnectionString(connectionString), configureApplicationInsightsLoggerOptions: o => { });
+//c.ConnectionString = configuration.GetConnectionString(connectionStringKey), configureApplicationInsightsLoggerOptions: o => { });
 //builder.Logging.AddFilter<ApplicationInsightsLoggerProvider>("Mine-cathegory", LogLevel.Trace);
 
-string GetConnectionstring()
-	=> configuration[CommonConsts.CurrentDb] == CommonConsts.SqlServerDb ?
-	configuration.GetConnectionString(CommonConsts.SqlServerConnectionString) :
-	configuration.GetConnectionString(CommonConsts.SqliteConnectionString);
+builder.Services.Configure<ForwardedHeadersOptions>(o => o.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto);
 
 var app = builder.Build();
 
@@ -146,22 +144,10 @@ app.UseAuthorization();
 app.MapGraphQL();
 
 app.MapControllers();
+await app.SeedEdentityRolesAsync();
 
-using (var scope = app.Services.CreateScope())
-{
-	var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
-	List<string> notExistRoles = new();
-	foreach (var role in Roles.List)
-	{
-		if (!await roleManager.RoleExistsAsync(role))
-			notExistRoles.Add(role);
-	}
-
-	foreach (var role in notExistRoles)
-	{
-		await roleManager.CreateAsync(new IdentityRole(role));
-	}
-}
+app.UseForwardedHeaders();
+app.LogAppStartup();
 
 app.Run();
 

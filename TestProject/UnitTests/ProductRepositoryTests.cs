@@ -1,16 +1,11 @@
 ﻿
 using DataAccess.SqlServer;
 using DataAccess.SqlServer.Repositories;
-using Domain.Interfaces;
 using Domain.Models;
-using FakeItEasy;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.VisualStudio.TestPlatform.ObjectModel;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace TestProject.UnitTests

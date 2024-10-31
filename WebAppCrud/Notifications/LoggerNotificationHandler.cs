@@ -27,7 +27,7 @@ namespace DataAccess.Notifications
 					_logger.LogError(notification.Message);
 					break;
 				default:
-					_logger.LogInformation($"EventType: {notification.NotificationType}, Message: {notification.Message}{GetIpMessage(notification.Ip)}{GetUserIdMessage(notification.UserId)}{GetErrorMessage(notification.ErrorMessage)}");
+					_logger.LogInformation($"EventType: {notification.NotificationType}, Message: {notification.Message}{GetIpMessage(notification.Ip)} {GetUserIdMessage(notification.UserId)}{GetErrorMessage(notification.ErrorMessage)}");
 					break;
 			}
 

@@ -14,6 +14,7 @@
 		public const string CurrentDb = "CurrentDb";
 		public const string SqliteDb = "SqliteDb";
 		public const string SqlServerDb = "SqlServerDb";
+		public const string WrongLoginOrPasswordError = "Wrong login or password.";
 
     }
 }

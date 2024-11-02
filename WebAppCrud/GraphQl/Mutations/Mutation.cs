@@ -5,11 +5,10 @@ using WebAppCrud.Mediator;
 using FluentValidation;
 using WebAppCrud.Exceptions;
 using WebAppCrud.Notifications;
-using Microsoft.AspNetCore.Components.Forms;
 
 namespace WebAppCrud.GraphQl.Mutations
 {
-	public class Mutation
+    public class Mutation
 	{
 		[GraphQLName("addProduct")]
 		[Authorize(policy: CommonConsts.AdminPolicy)]

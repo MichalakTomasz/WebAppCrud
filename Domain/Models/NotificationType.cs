@@ -14,6 +14,7 @@
 		Register,
 		RegistrationError,
 		Auth,
-		AuthError
+		AuthError,
+		DeleteUser
 	}
 }

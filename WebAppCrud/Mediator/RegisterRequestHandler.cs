@@ -54,7 +54,7 @@ namespace WebAppCrud.Mediator
             LoggerNotification notification = new()
             {
                 NotificationType = NotificationType.Auth,
-                Message = $"Auth user: {user} is trying to register.",
+                Message = $"Auth user: {user} is bein registered.",
                 Ip = ip
             };
             await _mediator.Publish(notification);

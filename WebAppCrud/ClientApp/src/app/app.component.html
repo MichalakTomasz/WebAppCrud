@@ -1,0 +1,20 @@
+<mat-grid-list cols="8" rowHeight="fit" rowHeight="50px">
+  <mat-grid-tile colspan="8" rowspan="1">
+    <mat-grid-tile-header>
+      {{ title }}
+    </mat-grid-tile-header>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="8" rowspan="1" class="menu">
+    <app-menu></app-menu>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1"/>
+  <mat-grid-tile colspan="6" rowspan="11" >
+    <div class="content">
+      <router-outlet ></router-outlet>
+    </div>
+  </mat-grid-tile>
+  <mat-grid-tile colspan="1"/>
+  <mat-grid-tile colspan="8" rowspan="5">
+    <app-user class="content"></app-user>
+  </mat-grid-tile>
+</mat-grid-list>

@@ -49,7 +49,7 @@ namespace TestProject.IngegrationTests
                 }
                 else
                 {
-                    var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<SqlServerDbContext>));
+                    var descriptor = services.SingleOrDefault(d => d.ServiceType == typeof(DbContextOptions<SqliteDbContext>));
                     if (descriptor != null)
                     {
                         services.Remove(descriptor);

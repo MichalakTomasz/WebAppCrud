@@ -1,6 +1,7 @@
 ﻿using Domain.Models;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
+using WebAppCrud.Events;
 using WebAppCrud.Notifications;
 
 namespace WebAppCrud.Extensions
@@ -30,5 +31,15 @@ namespace WebAppCrud.Extensions
                     await roleManager.CreateAsync(new IdentityRole(role));
             }
         }
+
+        public static IApplicationBuilder UseServerEvents(this IApplicationBuilder app)
+            => app.UseMiddleware<ServerEventsMiddleware>();
+
+        public static void AddApplicationLifetimeEvents(this IServiceCollection services)
+            => services.AddSingleton<ApplicationLifetimeEvents>();
+
+        public static void AddLivetimeHostedService(this IServiceCollection services)
+            => services.AddHostedService<LifetimeHostedService>();
     }
+
 }

@@ -1,0 +1,22 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <p>Product</p>
+  </mat-card-header>
+<mat-card-content>
+<form [formGroup]="productIdFormGroup" (ngSubmit)="onSubmit()">
+  <mat-form-field>
+    <input matInput formControlName="productId" [placeholder]="PlaceholderProductId"/>
+  </mat-form-field>
+  <button mat-stroked-button [disabled]="!productIdFormGroup.valid">Get product</button>
+</form>
+<br>
+<ng-container *ngIf="product.id != undefined">
+  <div>Product Id: {{product.id}}</div>
+  <div>Name: {{product.name}}</div>
+  <div>Code: {{product.code}}</div>
+  <div>Description: {{product.description}}</div>
+  <div>Url Picture: {{product.urlPicture}}</div>
+  <div>Price: {{product.price}}</div>
+</ng-container>
+</mat-card-content>
+</mat-card>

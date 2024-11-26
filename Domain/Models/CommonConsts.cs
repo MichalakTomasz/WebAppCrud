@@ -4,6 +4,7 @@
 	{
 		public const string GuestPolicy = "GuestPolicy";
 		public const string AdminPolicy = "AdminPolicy";
+		public const string CorsPolicy = "CorsPolicy";
 		public const string Issuer = "Issuer";
 		public const string Audience = "Audience";
 		public const string JwtKey = "Jwt:Key";

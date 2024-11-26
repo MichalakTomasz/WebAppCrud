@@ -18,6 +18,11 @@ using WebAppCrud.Validators;
 using DataAccess.Sqlite;
 using Microsoft.AspNetCore.HttpOverrides;
 using WebAppCrud.Extensions;
+using Microsoft.AspNetCore.SpaServices.AngularCli;
+using FluentAssertions.Common;
+using Microsoft.Extensions.FileProviders;
+using Microsoft.Extensions.Logging;
+using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
 var configuration = builder.Configuration;
@@ -25,9 +30,10 @@ var configuration = builder.Configuration;
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddApplicationLifetimeEvents();
+builder.Services.AddLivetimeHostedService();
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory())
 	.ConfigureContainer<ContainerBuilder>(c =>
 	{
@@ -128,16 +134,23 @@ builder.Logging.AddConsole();
 
 builder.Services.Configure<ForwardedHeadersOptions>(o => o.ForwardedHeaders = ForwardedHeaders.XForwardedFor | ForwardedHeaders.XForwardedProto);
 
+builder.Services.AddCors(o =>
+o.AddPolicy(CommonConsts.CorsPolicy, builder => builder
+.WithOrigins("http://localhost:4200")
+.AllowAnyMethod()
+.AllowAnyHeader()
+.AllowCredentials()));
+
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
 	app.UseSwagger();
 	app.UseSwaggerUI();
+    app.UseHttpsRedirection();
 }
 
-app.UseHttpsRedirection();
+app.UseCors(CommonConsts.CorsPolicy);
 app.UseAuthentication();
 app.UseAuthorization();
 
@@ -148,6 +161,19 @@ await app.SeedEdentityRolesAsync();
 
 app.UseForwardedHeaders();
 app.LogAppStartup();
+app.UseServerEvents();
+
+//app.UseStaticFiles(new StaticFileOptions { FileProvider = new PhysicalFileProvider(System.IO.Path.Combine(Directory.GetCurrentDirectory(), "ClientApp", "dist")), RequestPath = "" });
+//app.UseSpa(spa =>
+//{
+//	spa.Options.SourcePath = "ClientApp";
+
+//	if (app.Environment.IsDevelopment())
+//	{
+//		spa.Options.DevServerPort = 4200;
+//		spa.UseAngularCliServer(npmScript: "start");
+//	}
+//});
 
 app.Run();
 

@@ -1,0 +1,12 @@
+
+
+mat-card-content{
+  color: aliceblue;
+  padding-left:  5%;
+  padding-right: 5%;
+}
+
+ .userData {
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}

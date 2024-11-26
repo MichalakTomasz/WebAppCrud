@@ -1,0 +1,19 @@
+
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <p>Login</p>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input matInput formControlName="emailForm" [placeholder]="emailPlaceholder" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput formControlName="passwordForm" [placeholder]="passwordPlaceholder" type="password" />
+      </mat-form-field>
+      <button mat-stroked-button [disabled]="!loginFormGroup.valid">login</button>
+    </form>
+  </mat-card-content>
+
+</mat-card>
+

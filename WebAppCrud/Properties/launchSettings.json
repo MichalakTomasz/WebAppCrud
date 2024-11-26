@@ -39,3 +39,34 @@
     }
   }
 }
+
+//{
+//  "iisSettings": {
+//    "windowsAuthentication": false,
+//    "anonymousAuthentication": true,
+//    "iisExpress": {
+//      "applicationUrl": "http://localhost:52182",
+//      "sslPort": 44307
+//    }
+//  },
+//  "IIS Express": {
+//    "commandName": "IISExpress",
+//    "launchBrowser": true,
+//    "launchUrl": "index.html", // Zmieniony adres URL na plik startowy Angulara
+//    "environmentVariables": {
+//      "ASPNETCORE_ENVIRONMENT": "Development"
+//    }
+//  },
+//  "profiles": {
+//    "WebAppcrud": {
+//      "commandName": "Project",
+//      "dotnetRunMessages": true,
+//      "launchBrowser": true,
+//      "applicationUrl": "http://localhost:4200",
+//      "environmentVariables": {
+//        "ASPNETCORE_ENVIRONMENT": "Development"
+//      }
+//    }
+//  }
+//}
+

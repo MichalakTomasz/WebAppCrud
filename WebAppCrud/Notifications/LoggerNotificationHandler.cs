@@ -14,6 +14,7 @@ namespace DataAccess.Notifications
 			_logger = logger;
 		}
         public Task Handle(LoggerNotification notification, CancellationToken cancellationToken)
+		
 		{
 			switch (notification.NotificationType)
 			{
@@ -27,7 +28,7 @@ namespace DataAccess.Notifications
 					_logger.LogError(notification.Message);
 					break;
 				default:
-					_logger.LogInformation($"EventType: {notification.NotificationType}, Message: {notification.Message}{GetIpMessage(notification.Ip)} {GetUserIdMessage(notification.UserId)}{GetErrorMessage(notification.ErrorMessage)}");
+					_logger.LogInformation($"{DateTime.Now}, EventType: {notification.NotificationType}, Message: {notification.Message}{GetIpMessage(notification.Ip)} {GetUserIdMessage(notification.UserId)}{GetErrorMessage(notification.ErrorMessage)}");
 					break;
 			}
 

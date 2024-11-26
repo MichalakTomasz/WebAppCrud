@@ -1,0 +1,17 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <p>Delete Product</p>
+  </mat-card-header>
+  <mat-card-content>
+    <form [formGroup]="deleteFormGroup" (ngSubmit)="onSubmit()">
+      <mat-form-field>
+        <input matInput formControlName="id" [placeholder]="idPlaceholder" />
+      </mat-form-field>
+      <button mat-stroked-button [disabled]="!deleteFormGroup.valid">
+        delete Product
+      </button>
+    </form>
+    <br />
+    <div>{{ deleteResult }}</div>
+  </mat-card-content>
+</mat-card>

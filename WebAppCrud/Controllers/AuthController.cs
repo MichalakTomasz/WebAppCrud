@@ -47,5 +47,12 @@ namespace WebAppCrud.Controllers
 
 			return BadRequest(false);
 		}
+
+		[HttpGet("passwordpolicy")]
+		public async Task<ActionResult<PasswordPolicy>> GetPasswordPolicy()
+		{
+			var passwordPolicy =  await _mediator.Send(new GetPasswordPolicyRequest());
+			return Ok(passwordPolicy);
+		}
 	}
 }

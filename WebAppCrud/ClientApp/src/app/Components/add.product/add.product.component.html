@@ -1,0 +1,27 @@
+<mat-card appearance="outlined">
+  <mat-card-header>
+    <p>Product</p>
+</mat-card-header>
+<mat-card-content>
+  <form [formGroup]="addProductFormGroup" (ngSubmit)="onSubmit()">
+    <mat-form-field>
+      <input matInput formControlName="name" [placeholder]="namePlaceholder"/>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="code" [placeholder]="codePlaceholder"/>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="description" [placeholder]="descriptionPlaceholder"/>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="urlPicture" [placeholder]="urlPicturePlaceholder"/>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput formControlName="price" [placeholder]="pricePlaceholder"/>
+    </mat-form-field>
+    <button [disabled]="!addProductFormGroup.valid" mat-stroked-button >Add</button>
+  </form>
+  <br>
+  <div>{{addResult}}</div>
+</mat-card-content>
+</mat-card>

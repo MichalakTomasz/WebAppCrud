@@ -15,6 +15,8 @@
 		RegistrationError,
 		Auth,
 		AuthError,
-		DeleteUser
+		DeleteUser,
+		AppEvent,
+		Exception
 	}
 }

@@ -88,7 +88,7 @@ namespace WebAppCrud.GraphQl.Mutations
         [GraphQLName("auth")]
         public async Task<AuthResult> AuthAsync(AuthModel authModel, [Service]IMediator mediator, [Service]IHttpContextAccessor httpContextAccessor)
         {
-            var ip = httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+            var ip = httpContextAccessor.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "";
             LoggerNotification authNotification = new()
             {
                 NotificationType = NotificationType.Information,
@@ -103,7 +103,7 @@ namespace WebAppCrud.GraphQl.Mutations
         [GraphQLName("register")]
         public async Task<bool> RegisterAsync(NewAppUser newUser, [Service]IMediator mediator, IHttpContextAccessor httpContextAccessor)
         {
-            var ip = httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+            var ip = httpContextAccessor.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "";
             LoggerNotification registerNotification = new()
             {
                 NotificationType = NotificationType.Information,
@@ -119,7 +119,7 @@ namespace WebAppCrud.GraphQl.Mutations
         [Authorize(policy: CommonConsts.AdminPolicy)]
         public async Task<bool> DeleteUserAsync(Guid userId, [Service]IMediator mediatior, IHttpContextAccessor httpContextAccessor)
         {
-            var ip = httpContextAccessor.HttpContext.Connection.RemoteIpAddress.ToString();
+            var ip = httpContextAccessor.HttpContext.Connection.RemoteIpAddress?.ToString() ?? "";
             LoggerNotification deleteUserNotification = new()
             {
                 NotificationType = NotificationType.Information,

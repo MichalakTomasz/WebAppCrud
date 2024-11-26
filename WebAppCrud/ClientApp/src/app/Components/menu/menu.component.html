@@ -1,0 +1,9 @@
+  <mat-toolbar class="navbar">
+    <div>Menu</div>
+    <div>
+      <ng-container *ngFor='let menuItem of menuItems'>
+        <span [routerLink]="menuItem.path">{{menuItem?.name}}</span>
+      </ng-container>
+    </div>
+  </mat-toolbar>
+

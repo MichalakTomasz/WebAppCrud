@@ -136,7 +136,7 @@ builder.Services.Configure<ForwardedHeadersOptions>(o => o.ForwardedHeaders = Fo
 
 builder.Services.AddCors(o =>
 o.AddPolicy(CommonConsts.CorsPolicy, builder => builder
-.WithOrigins("http://localhost:4200")
+.WithOrigins("http://localhost:4200", "http://localhost:3000")
 .AllowAnyMethod()
 .AllowAnyHeader()
 .AllowCredentials()));

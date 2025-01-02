@@ -42,10 +42,12 @@ namespace WebAppCrud.Mediator
 
                     var roles = await _userManager.GetRolesAsync(user);
 
+                    var tokenResult = await _mediator.Send(new GenerateTokenRequest { InputRoles = new InputRoles { Roles = roles as List<string> } });
                     AuthResult loginResult = new()
                     {
                         UserId = user.Id,
-                        Token = await _mediator.Send(new GenerateTokenRequest { InputRoles = new InputRoles { Roles = roles as List<string> } }),
+                        Token = tokenResult.token,
+                        Expiration = tokenResult.expiration,
                         Roles = roles.ToList(),
                         IsAuthorized = true
                     };
@@ -54,12 +56,13 @@ namespace WebAppCrud.Mediator
                     return loginResult;
 
                 default:
+                    tokenResult = await _mediator.Send(new GenerateTokenRequest());
                     AuthResult authResult = new()
                     {
-                        Token = await _mediator.Send(new GenerateTokenRequest()),
+                        Token = tokenResult.token,
+                        Expiration = tokenResult.expiration,
                         Roles = new List<string> { CommonConsts.Guest },
                         IsAuthorized = true
-
                     };
                     await LogAuthSuccess("", authResult.Roles, request.Ip);
                     return authResult;

@@ -7,7 +7,7 @@ using System.Text;
 
 namespace WebAppCrud.Mediator
 {
-	public class GenerateTokenRequestHandlerAsync : IRequestHandler<GenerateTokenRequest, string>
+	public class GenerateTokenRequestHandlerAsync : IRequestHandler<GenerateTokenRequest, (string token, DateTime expiration)>
 	{
 		private readonly IConfiguration _configuration;
 
@@ -15,7 +15,7 @@ namespace WebAppCrud.Mediator
         {
 			_configuration = configuration;
 		}
-        public Task<string> Handle(GenerateTokenRequest request, CancellationToken cancellationToken)
+        public Task<(string token, DateTime expiration)> Handle(GenerateTokenRequest request, CancellationToken cancellationToken)
 		{
 			List<Claim> claims = new()
 			{
@@ -32,15 +32,16 @@ namespace WebAppCrud.Mediator
 
 			var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_configuration[CommonConsts.JwtKey]));
 			var creds = new SigningCredentials(key, SecurityAlgorithms.HmacSha256);
+			var expiration = DateTime.Now.AddMinutes(30);
 
-			var token = new JwtSecurityToken(
+            var token = new JwtSecurityToken(
 				claims: claims,
-				expires: DateTime.Now.AddMinutes(30),
+				expires: expiration,
 				issuer: _configuration[CommonConsts.Issuer],
 				audience: _configuration[CommonConsts.Audience],
 				signingCredentials: creds);
 
-			return Task.FromResult(new JwtSecurityTokenHandler().WriteToken(token));
+			return Task.FromResult((new JwtSecurityTokenHandler().WriteToken(token), expiration));
 		}
 	}
 }

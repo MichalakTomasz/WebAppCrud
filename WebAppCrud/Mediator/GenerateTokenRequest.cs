@@ -3,7 +3,7 @@ using MediatR;
 
 namespace WebAppCrud.Mediator
 {
-	public class GenerateTokenRequest : IRequest<string>
+	public class GenerateTokenRequest : IRequest<(string token, DateTime expiration)>
 	{
         public InputRoles InputRoles { get; set; }
     }
